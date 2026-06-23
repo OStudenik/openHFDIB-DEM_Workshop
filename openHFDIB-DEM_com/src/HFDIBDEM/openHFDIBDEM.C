@@ -92,7 +92,7 @@ recordSimulation_(readBool(HFDIBDEMDict_.lookup("recordSimulation")))
 
     if(HFDIBDEMDict_.found("nSolidsInDomain"))
     {
-        solverInfo::setNSolidsTreshnold(readLabel(HFDIBDEMDict_.lookup("nSolidsInDomain")));
+        solverInfo::setNSolidsThreshold(readLabel(HFDIBDEMDict_.lookup("nSolidsInDomain")));
     }
 
     dictionary demDic = HFDIBDEMDict_.subDict("DEM");
@@ -386,7 +386,7 @@ void openHFDIBDEM::initialize
         label maxAdditions(1000);
         label cAddition(0);
 
-        while (addModels_[modelI].shouldAddBody(body) and cAddition < maxAdditions and immersedBodies_.size() < solverInfo::getNSolidsTreshnold())
+        while (addModels_[modelI].shouldAddBody(body) and cAddition < maxAdditions and immersedBodies_.size() < solverInfo::getNSolidsThreshold())
         {
             InfoH << addModel_Info << "addModel invoked action, trying to add new body" << endl;
             std::shared_ptr<geomModel> bodyGeomModel(addModels_[modelI].addBody(body, immersedBodies_));
@@ -424,6 +424,7 @@ void openHFDIBDEM::initialize
                 }
                 verletList_.addBodyToVList(immersedBodies_[addIBPos]);
                 InfoH << addModel_Info << "Body based on: " << bodyName << " successfully added" << endl;
+                InfoH << addModel_Info << "Current count of solids within the domain : " << immersedBodies_.size() << endl;
                 cAddition = 0;
             }
             else

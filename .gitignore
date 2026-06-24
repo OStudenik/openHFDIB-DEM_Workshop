@@ -15,11 +15,6 @@
 # CVS recovered versions - anywhere
 .#*
 
-# Objects and archives - anywhere
-*.[oa]
-*.la
-*.so
-
 # Derived files
 lex.yy.c
 
@@ -30,12 +25,6 @@ lex.yy.c
 
 # Corefiles
 core
-
-# Dependency files - anywhere
-*.dep
-
-# lnInclude (symlink) directories - anywhere
-lnInclude/
 
 # Build directories - anywhere
 linux*Clang*/
@@ -49,9 +38,14 @@ platforms/
 /build/
 /platforms/
 
-# wmake/build artifacts in openHFDIB-DEM_com folder tree
-openHFDIB-DEM_com/**/Make/
-openHFDIB-DEM_com/**/*.dep
+# wmake/build artifacts everywhere
+# (Make/ directories, *.dep files, *.o files, lnInclude symlink directories)
+Make/
+lnInclude/
+*.dep
+*.[oa]
+*.la
+*.so
 
 # Reinstate wmake rules that might look like build directories
 !/wmake/rules/*/

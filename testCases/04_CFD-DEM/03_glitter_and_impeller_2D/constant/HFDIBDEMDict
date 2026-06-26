@@ -14,7 +14,7 @@ FoamFile
     object      HFDIBDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-bodyNames ("impeller_scaled" "glitter_SC_TR1");
+bodyNames ("impeller_scaled" "glitter");
 
 interpolationSchemes
 {
@@ -33,7 +33,7 @@ outputSetup
 {
     basic true;
     iB  false;
-    DEM true;
+    DEM false;
     addModel false;
     parallelDEM false;
 }
@@ -92,20 +92,6 @@ DEM
 			nVec (-1 0.0 0.0);
 			planePoint (-0.03 0 0);
 		}
-
-		// front
-		// {
-		// 	material wall;
-		// 	nVec (0.0 0.0 1);
-		// 	planePoint (0 0 0.01);
-		// }
-
-		// back
-		// {
-		// 	material wall;
-        //     nVec (0.0 0.0 -1);
-        //     planePoint (0 0 -0.01);
-		// }
     }
 }
 
@@ -149,7 +135,7 @@ impeller_scaled
     material particle;
 }
 
- glitter_SC_TR1
+glitter
 {
     fullyCoupledBody
     {
@@ -198,8 +184,8 @@ impeller_scaled
             scalingMode    randomScaling;
             randomScalingCoeffs
             {
-                minScale 1.0;
-                maxScale 1.0;
+                minScale 0.5;
+                maxScale 0.5;
             }
             rotationMode   fixedAxisRandomRotation;
  			fixedAxisRandomRotationCoeffs
